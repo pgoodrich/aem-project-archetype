@@ -405,6 +405,15 @@ Bundle-DocURL:
                 </plugin>
             </plugins>
         </pluginManagement>
+        <testResources>
+            <testResource>
+                <directory>core/src/test/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.json</include>
+                </includes>
+            </testResource>
+        </testResources>
     </build>
 
     <profiles>

@@ -15,6 +15,7 @@
  */
 package ${package}.core.models;
 
+import ${package}.core.helpers.AppAemContext;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,31 +34,29 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 @ExtendWith(AemContextExtension.class)
 class HelloWorldModelTest {
-
     private HelloWorldModel hello;
+
+    private AemContext aemContext = AppAemContext.newAemContext();
 
     private Page page;
     private Resource resource;
 
     @BeforeEach
-    public void setup(AemContext context) throws Exception {
-
-        // prepare a page with a test resource
-        page = context.create().page("/content/mypage");
-        resource = context.create().resource(page, "hello",
-            "sling:resourceType", "${appId}/components/helloworld");
-
-        // create sling model
+    public void setup() throws Exception {
+        // Create sling model
         hello = resource.adaptTo(HelloWorldModel.class);
     }
 
     @Test
     void testGetMessage() throws Exception {
-        // some very basic junit tests
+        // Some very basic junit tests
         String msg = hello.getMessage();
         assertNotNull(msg);
         assertTrue(StringUtils.contains(msg, resource.getResourceType()));
         assertTrue(StringUtils.contains(msg, page.getPath()));
+        String text = hello.getText();
+        assertNotNull(text);
+        assertTrue(text.equals("Hello World!"));
     }
 
 }

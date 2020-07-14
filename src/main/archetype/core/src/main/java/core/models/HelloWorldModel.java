@@ -18,7 +18,7 @@ package ${package}.core.models;
 import static org.apache.sling.api.resource.ResourceResolver.PROPERTY_RESOURCE_TYPE;
 
 import javax.annotation.PostConstruct;
-
+import javax.inject.Inject;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.Default;
@@ -48,6 +48,10 @@ public class HelloWorldModel {
     @SlingObject
     private ResourceResolver resourceResolver;
 
+    @Inject
+    @Default(values="")
+    private String text;
+
     private String message;
 
     @PostConstruct
@@ -67,4 +71,7 @@ public class HelloWorldModel {
         return message;
     }
 
+    public String getText() {
+        return text;
+    }
 }

@@ -1,0 +1,18 @@
+{
+  "jcr:primaryType": "cq:Page",
+  "jcr:content": {
+    "jcr:primaryType": "nt:unstructured",
+    "jcr:title": "${appId}",
+    "pageTitle": "${appTitle}",
+    "sling:resourceType": "${appId}/components/page",
+    "helloworld": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "${appId}/components/helloworld",
+      "text":"Hello World!"
+    },
+    "navigation": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "${appId}/components/navigation"
+    }
+  }
+}
